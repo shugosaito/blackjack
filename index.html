@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+ <meta charset='UTF-8'>
+ <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+ <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+ <meta name='description' content='' /> 
+ <link rel='stylesheet' href='style.css'>
+ <title>Black Jack</title>
+</head>
+<body>
+
+  
+  <header>
+    <h1 class="title">Black Jack</h1>
+    <p id="result" class="subtitle">Let's Play!!!</p>
+  </header>
+
+  <div class="blackjackTable"> <!-- row1 -->
+
+    <div id="yourBox" class="playerBox">
+      <p class="playerBox__name">プレイヤー: <span id="yourResult">0</span></p>
+      <!-- <img src="images/A.png" alt=""> -->
+    </div>
+
+    <div id="dealerBox" class="playerBox">
+      <p class="playerBox__name">ディーラー: <span id="dealerResult">0</span></p>
+    </div>
+
+
+  </div>
+
+  <div class="command">  <!-- row2 -->
+    <button id="hit" class="command__btn command__btn-hit">Hit</button>
+    <button id="stand" class="command__btn command__btn-stand">Stand</button>
+    <button id="deal" class="command__btn command__btn-deal">Deal</button>
+  </div> 
+
+
+  <div class="score"> <!-- row3 -->
+    <table class="score__table">
+      <tr>
+        <th class="score__header">Wins</th>
+        <th class="score__header">Losses</th>
+        <th class="score__header">Draws</th>
+      </tr>
+      <tr>
+        <td class="score__data"><span id="wins">0</span></td>
+        <td class="score__data"><span id="losses">0</span></td>
+        <td class="score__data"><span id="draws">0</span></td>
+
+      </tr>
+    </table>
+  </div>
+
+
+
+
+
+ <script src='main.js'></script>
+</body>
+</html>
