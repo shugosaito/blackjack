@@ -1,0 +1,76 @@
+@charset 'UTF-8';
+*, *::before, *::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+a, a:hover {
+text-decoration: none;
+color: inherit;
+}
+ul, li {
+list-style: none;
+}
+
+header {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.blackjackTable {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  /* background: rgb(5, 77, 11); fix later  */
+  background: url('./images/tableBackground.png') center/ cover;
+  height: 400px; /* fix later */ 
+}
+
+.playerBox {
+  width: 50%; /* flex: 1;でも同じスタイルにできる */
+  display: flex;
+  justify-content: space-around; /* fix later */
+  flex-wrap: wrap;
+}
+
+.playerBox img {
+  width: 63px;
+  height: 89px;
+}
+
+.playerBox__name {
+  text-align: center;
+  color:#fff;
+  font-size: 24px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.command {
+  display: flex;
+  justify-content: space-between;
+  max-width: 200px; /*fix later*/
+  margin: 0 auto 40px;  
+
+} 
+
+.command__btn {
+  padding: 4px 8px;
+  width: 56px;
+  cursor: pointer;
+}
+
+.score__table {
+  margin: 0 auto;
+  border: 1px solid #000;
+  border-spacing: 0;
+}
+
+.score__header, .score__data {
+  border: 1px solid #000;
+  padding: 4px;
+}
+
+.score__data {
+  text-align: right;
+}
