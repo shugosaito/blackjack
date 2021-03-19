@@ -35,24 +35,28 @@ function blackjackHit() {
   }
 }
 
-function blackjackStand() { //=dealerLogic
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-  blackjackGame["isStand"] = true;
+async function blackjackStand() {
 
-  // if (blackjackGame["isStand"] === true && blackjackGame["turnsOver"] === false) {
-
-    let card = randomCards();
-    showCard(card, dealer);
-    updateScore(card, dealer);
-    showScore(dealer);
+  if (you["score"] !== 0 && blackjackGame["isStand"] === false) { //最初からstandを押せないようにするため
   
-    if (dealer["score"] >= 17) {
-      let winner = computeWinner();
-      showResult(winner);
-      blackjackGame["turnsOver"] = true;
+    blackjackGame["isStand"] = true;
+  
+    while (dealer["score"] < 18 && blackjackGame["isStand"] === true) {
+      let card = randomCards();
+      showCard(card, dealer);
+      updateScore(card, dealer);
+      showScore(dealer);
+      await sleep(800);
     }
-  // }
-
+  
+    let winner = computeWinner();
+    showResult(winner);
+    blackjackGame["turnsOver"] = true;
+  }
 }
 
 function randomCards() {
@@ -62,7 +66,6 @@ function randomCards() {
 }
 
 function showCard(card, activePlayer) {  //引数に指定することで関数内でrandomCards()を呼ばなくてよい
-
   if (activePlayer["score"] <= 21) { //21以上の時に新しいカードを出さないため
     let cardImage = new Image(); // document.createElement('img'); と出力内容は同じ
     cardImage.src = `images/${card}.png`;
@@ -73,7 +76,6 @@ function showCard(card, activePlayer) {  //引数に指定することで関数�
 }
 
 function blackjackDeal() {
-
   if (blackjackGame["turnsOver"] === true) {
 
     blackjackGame["isStand"] = false;
@@ -122,7 +124,6 @@ function updateScore(card, activePlayer) {
     activePlayer["score"] += blackjackGame["cardsMap"][card];
   }
 
-
 }
 
 function showScore(activePlayer) {
@@ -166,30 +167,27 @@ function computeWinner() { //compute&return winner, update result table
 function showResult(winner) {
   let message, messageColor;
 
-  // if (blackjackGame["turnsOver"] === true) { //こいつの必要性が謎
-
-    const winResult = document.getElementById('wins');
-    const lostResult = document.getElementById('losses');
-    const drawResult = document.getElementById('draws');
-    if (winner === you) {
-      winResult.textContent = blackjackGame["wins"];
-      message = "You won!";
-      messageColor = "gold"; //fix later
-      winSound.play();
-    } else if (winner === dealer) {
-      lostResult.textContent = blackjackGame["losses"];
-      message = "You lost,,,";
-      messageColor = "red";
-      lostSound.play();
-    } else {
-      drawResult.textContent = blackjackGame["draws"];
-      message = "You drew";
-      messageColor = "black";
-    }
-    const result = document.getElementById('result');
-    result.textContent = message;
-    result.style.color = messageColor;
-  // }
+  const winResult = document.getElementById('wins');
+  const lostResult = document.getElementById('losses');
+  const drawResult = document.getElementById('draws');
+  if (winner === you) {
+    winResult.textContent = blackjackGame["wins"];
+    message = "You won!";
+    messageColor = "gold"; //fix later
+    winSound.play();
+  } else if (winner === dealer) {
+    lostResult.textContent = blackjackGame["losses"];
+    message = "You lost,,,";
+    messageColor = "red";
+    lostSound.play();
+  } else {
+    drawResult.textContent = blackjackGame["draws"];
+    message = "You drew";
+    messageColor = "black";
+  }
+  const result = document.getElementById('result');
+  result.textContent = message;
+  result.style.color = messageColor;
 }
 
 
